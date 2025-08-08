@@ -1,7 +1,13 @@
+import Pages from "../../components/layout/Pages.tsx";
+
 const Cart = () => {
 
     return (
-        <h1> page panier</h1>
+        <>
+            <Pages title="Admin Orders" >
+                <h1> page panier</h1>
+            </Pages>
+        </>
     );
 };
 

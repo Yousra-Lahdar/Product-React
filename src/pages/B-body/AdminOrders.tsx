@@ -1,7 +1,13 @@
+import Pages from "../../components/layout/Pages.tsx";
+
 const AdminOrders = () => {
 
     return (
-        <h1>page admin</h1>
+        <>
+            <Pages title="Admin Orders" >
+                <h1>page admin</h1>
+            </Pages>
+        </>
     );
 };
 
