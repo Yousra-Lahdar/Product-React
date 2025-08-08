@@ -4,7 +4,7 @@ const Cart = () => {
 
     return (
         <>
-            <Pages title="Admin Orders" >
+            <Pages title="Panier" >
                 <h1> page panier</h1>
             </Pages>
         </>

@@ -4,7 +4,7 @@ const ProductList = () => {
 
     return (
         <>
-            <Pages title="Admin Orders" >
+            <Pages title="produits" >
                 <h1>page liste des produits</h1>
             </Pages>
         </>

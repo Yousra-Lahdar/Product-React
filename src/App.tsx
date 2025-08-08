@@ -1,11 +1,14 @@
 import Router from "./routers/Router.tsx";
+import Header from "./pages/A-header/Header.tsx";
+
 
 
 const App = () => {
 
   return (
     <>
-     <Router/>
+        <Header />
+         <Router/>
     </>
   )
 }
