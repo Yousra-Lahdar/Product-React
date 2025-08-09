@@ -8,12 +8,20 @@ type CartItem = {
     quantity: number;
 };
 
+type Order = {
+    id: number;
+    items: CartItem[];
+    date: string;
+};
+
 type CartContextType = {
     cart: CartItem[];
+    orders: Order[];
     addToCart: (item: CartItem) => void;
     removeFromCart: (id: number) => void;
     updateQuantity: (id: number, quantity: number) => void;
     clearCart: () => void;
+    addOrder:(order: Order) => void;
 };
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
@@ -24,10 +32,18 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
         return saved ? JSON.parse(saved) : [];
     });
 
-    // Sauvegarde du panier dans localStorage
+    const [orders, setOrders] = useState<Order[]>(() => {
+        const saved = localStorage.getItem("orders");
+        return saved ? JSON.parse(saved) : [];
+    });
+
     useEffect(() => {
         localStorage.setItem("cart", JSON.stringify(cart));
     }, [cart]);
+
+    useEffect(() => {
+        localStorage.setItem("orders", JSON.stringify(orders));
+    }, [orders]);
 
     const addToCart = (item: CartItem) => {
         setCart((prev) => {
@@ -53,9 +69,13 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
 
     const clearCart = () => setCart([]);
 
+    const addOrder = (order: Order) => {
+        setOrders((prev) => [...prev, order]);
+    };
+
     return (
         <CartContext.Provider
-            value={{ cart, addToCart, removeFromCart, updateQuantity, clearCart }}
+            value={{ cart,orders, addToCart, removeFromCart, updateQuantity, clearCart,addOrder }}
         >
             {children}
         </CartContext.Provider>
@@ -68,4 +88,6 @@ export const useCart = () => {
         throw new Error("useCart must be used within a CartProvider");
     }
     return context;
+
+
 };
